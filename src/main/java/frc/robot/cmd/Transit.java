@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.cmd;
 
 import frc.robot.subsystems.Motor;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.networktables.NetworkTableEntry;
 
-public class TransitCmd extends CommandBase {
+public class Transit extends CommandBase {
 	public static final double mkaxTransitSpeed = .5;
 
 	private final Motor motors;
@@ -14,7 +14,7 @@ public class TransitCmd extends CommandBase {
 	private NetworkTableEntry cfg = Shuffleboard.getTab("Commands")
 			.add("Transit Speed", mkaxTransitSpeed).getEntry();
 
-	public TransitCmd(Motor subsystem) {
+	public Transit(Motor subsystem) {
 		motors = subsystem;
 		addRequirements(subsystem);
 	}
