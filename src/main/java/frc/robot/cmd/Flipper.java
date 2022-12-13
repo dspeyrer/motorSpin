@@ -24,7 +24,7 @@ public class Flipper extends CommandBase {
 
 	@Override
 	public void execute() {
-		double value = input.get();
+		double value = input.get() * 0.5;
 
 		if (value > 0 ? topLimit.get() : bottomLimit.get()) {
 			motor.setSpeed(0);

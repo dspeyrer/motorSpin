@@ -20,20 +20,24 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		new CompressorControl(0, true);
 
-		new Drive(new ArcadeDrive(4, 5, 6, 7), new Doubler(() -> joystick.getRawAxis(0)),
-				new Doubler(() -> joystick.getRawAxis(1)), 5,
-				0.05);
+		new Drive(
+				new ArcadeDrive(4, 5, 6, 7),
+				new DefaultJoystick(joystick, 0, 0.5),
+				new DefaultJoystick(joystick, 1, 0.7));
 
-		new Flipper(new Motor(2), new Doubler(() -> joystick.getRawAxis(5)), 1, 0);
+		new Flipper(
+				new Motor(2),
+				new DefaultJoystick(joystick, 5, 0.5),
+				1, 0);
 
 		Solenoid solenoid = new Solenoid(0, 1);
 
-		new JoystickButton(joystick, 2).whenPressed(new InstantCommand(solenoid::off, solenoid));
+		new JoystickButton(joystick, 2)
+				.whenPressed(new InstantCommand(solenoid::off));
 
-		JoystickButton j = new JoystickButton(joystick, 1);
-
-		j.whenPressed(new InstantCommand(solenoid::forward, solenoid));
-		j.whenReleased(new InstantCommand(solenoid::reverse, solenoid));
+		new JoystickButton(joystick, 1)
+				.whenPressed(new InstantCommand(solenoid::forward))
+				.whenReleased(new InstantCommand(solenoid::reverse));
 	}
 
 	@Override
