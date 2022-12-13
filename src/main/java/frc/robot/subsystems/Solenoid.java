@@ -12,7 +12,6 @@ public class Solenoid extends SubsystemBase {
 	}
 
 	public void forward() {
-		// System.out.println("\n=======\nTRIGGERING FORWARD\n========\n");
 		s.set(DoubleSolenoid.Value.kForward);
 	}
 
