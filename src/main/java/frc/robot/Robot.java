@@ -22,12 +22,12 @@ public class Robot extends TimedRobot {
 
 		new Drive(
 				new ArcadeDrive(4, 5, 6, 7),
-				new DefaultJoystick(joystick, 0, 0.5),
-				new DefaultJoystick(joystick, 1, 0.7));
+				new Transform(() -> joystick.getRawAxis(0)).deadband(0.05).slewRateLimit(7).square().scale(0.7),
+				new Transform(() -> joystick.getRawAxis(1)).deadband(0.05).slewRateLimit(5).square().scale(0.7));
 
 		new Flipper(
 				new Motor(2),
-				new DefaultJoystick(joystick, 5, 0.5),
+				new Transform(() -> joystick.getRawAxis(5)).deadband(0.05).slewRateLimit(7).square().scale(0.5),
 				1, 0);
 
 		Solenoid solenoid = new Solenoid(0, 1);
